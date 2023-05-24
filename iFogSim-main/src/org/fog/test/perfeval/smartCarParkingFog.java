@@ -39,6 +39,7 @@ public class smartCarParkingFog {
     static int numOfAreas = 1;
     static int numOfCamerasPerArea1=2;
     static double CAM_TRANSMISSION_TIME = 5;
+    //******all the data send to the fog at first.******(Hossein)
     private static boolean CLOUD = false;
     public static void main(String[] args) {
         Log.printLine("Starting smart car parking system...");
@@ -54,19 +55,28 @@ public class smartCarParkingFog {
             application.setUserId(broker.getId());
             createFogDevices(broker.getId(), appId);
             Controller controller = null;
+            //******module is VM and we can create multi-VM in each fog node. each VM can process tasks.******(Hossein) 
             ModuleMapping moduleMapping = ModuleMapping.createModuleMapping(); // initializing a module mapping
+            System.out.println("this is name of fog devices:    " + fogDevices);
+            System.out.println("this is name of broker Ids:    " + broker);
+            System.out.println("first loop  ******hossein");
             for(FogDevice device : fogDevices){
-                if(device.getName().startsWith("c")){ // names of all Smart Cameras start with 'm'
+            	if(device.getName().startsWith("c")){ // names of all Smart Cameras start with 'm'
                     moduleMapping.addModuleToDevice("picture-capture", device.getName());  // fixing 1 instance of the Motion Detector module to each Smart Camera
                 }
             }
+            
+            System.out.println("second loop  ******hossein");
             for(FogDevice device : fogDevices){
-                if(device.getName().startsWith("a")){ // names of all fog devices start with 'a'
+                           if(device.getName().startsWith("a")){ // names of all fog devices start with 'a'
                     moduleMapping.addModuleToDevice("slot-detector", device.getName());  // fixing 1 instance of the Motion Detector module to each Smart Camera
                 }
             }
             //moduleMapping.addModuleToDevice("user_interface", "cloud"); // fixing instances of User Interface module in the Cloud
+            System.out.println("last if  ******hossein");
             if(CLOUD){
+                System.out.println("last if  ******hossein");
+                
                 // if the mode of deployment is cloud-based
                 moduleMapping.addModuleToDevice("picture-capture", "cloud"); // placing all instances of Object Detector module in the Cloud
                 moduleMapping.addModuleToDevice("slot-detector", "cloud"); // placing all instances of Object Tracker module in the Cloud
@@ -109,7 +119,7 @@ public class smartCarParkingFog {
             addArea(i+"", userId, appId, proxy.getId());
         }
     }
-
+    //Area means fog node :) ****hossein
     private static FogDevice addArea(String id, int userId, String appId, int parentId){
         FogDevice router = createFogDevice("a-"+id, 2800, 4000, 1000, 10000, 2, 0.0, 107.339, 83.4333);
         fogDevices.add(router);

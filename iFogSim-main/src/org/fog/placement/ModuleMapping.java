@@ -35,8 +35,11 @@ public class ModuleMapping {
 	 */
 	public void addModuleToDevice(String moduleName, String deviceName){
 		if(!getModuleMapping().containsKey(deviceName))
+			System.out.println("This is deviceName: " + deviceName + "	*********hossein" );
 			getModuleMapping().put(deviceName, new ArrayList<String>());
 		if(!getModuleMapping().get(deviceName).contains(moduleName))
+
+			System.out.println("This is deviceName: " + deviceName + "	And this is modelName: "+moduleName + "	*********hossein" );
 			getModuleMapping().get(deviceName).add(moduleName);
 	}
 	
