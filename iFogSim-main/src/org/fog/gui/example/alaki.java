@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class alaki {
+import org.cloudbus.cloudsim.Cloudlet;
+import org.fog.entities.FogDevice;
 
-    public static void main(String[] args) {
-        Map<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
-        ArrayList<String> list = new ArrayList<>();
-        map.put("hossein", list);
-        map.get("hossein").add("111");
-        System.out.println(map.get("hossein"));
+public class alaki {
+	static List<FogDevice> fogDevice = new ArrayList<FogDevice>();
+	static List<Cloudlet> tasks = new ArrayList<Cloudlet>();
+	public static void main(String[] args) {
+    tasks.add(new Cloudlet(1, 12, 10, 20, 30, null, null, null, false, null));
+    System.out.println(tasks.get(0).getCostPerSec());
     }
 }
