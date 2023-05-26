@@ -11,8 +11,11 @@ import org.fog.entities.FogDevice;
 public class alaki {
 	static List<FogDevice> fogDevice = new ArrayList<FogDevice>();
 	static List<Cloudlet> tasks = new ArrayList<Cloudlet>();
-	public static void main(String[] args) {
-    tasks.add(new Cloudlet(1, 12, 10, 20, 30, null, null, null, false, null));
-    System.out.println(tasks.get(0).getCostPerSec());
+
+	public static void main(String[] args) throws Exception {
+		
+    
     }
+//	private static List<Cloudlet> createCloudlet(int userId, int cloutlet){
+//	}
 }
